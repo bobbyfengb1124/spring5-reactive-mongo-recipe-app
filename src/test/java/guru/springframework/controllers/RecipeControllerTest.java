@@ -4,6 +4,8 @@ import guru.springframework.commands.RecipeCommand;
 import guru.springframework.domain.Recipe;
 import guru.springframework.exceptions.NotFoundException;
 import guru.springframework.services.RecipeService;
+import reactor.core.publisher.Mono;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -47,7 +49,7 @@ public class RecipeControllerTest {
         Recipe recipe = new Recipe();
         recipe.setId("1");
 
-        when(recipeService.findById(anyString())).thenReturn(recipe);
+        when(recipeService.findById(anyString())).thenReturn(Mono.just(recipe));
 
         mockMvc.perform(get("/recipe/1/show"))
                 .andExpect(status().isOk())
