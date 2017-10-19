@@ -6,6 +6,11 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  * Created by jt on 6/21/17.
  */
@@ -15,7 +20,14 @@ import java.math.BigDecimal;
 public class IngredientCommand {
     private String id;
     private String recipeId;
+    
+    @NotBlank
     private String description;
+    
+    @NotNull
+    @Min(1)
     private BigDecimal amount;
+    
+    @NotNull
     private UnitOfMeasureCommand uom;
 }
